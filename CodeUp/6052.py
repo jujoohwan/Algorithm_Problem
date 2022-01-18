@@ -1,5 +1,5 @@
 result = int(input())
 if result == 0:
     print('False')
-else :
+else:
     print('True')
