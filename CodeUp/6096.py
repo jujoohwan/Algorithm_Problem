@@ -1,34 +1,38 @@
 # 이제 슬슬 어려워지기 시작 
 # 여기 부분 복습 할 차례
-# 구글링해서 s0ng 블로그 보면서 참고함
-# https://s0ng.tistory.com/entry/CodeUp-%EC%BD%94%EB%93%9C%EC%97%85-%EA%B8%B0%EC%B4%88-100%EC%A0%9C-6096%EB%B2%88-%ED%92%80%EC%9D%B4-%ED%8C%8C%EC%9D%B4%EC%8D%ACpython
+# 다음날 와서 풀음 아래와 같이 ㅎㅎ 쉽넹~
 
-location = []
+userArray = []
+
+userArray = [[0 for col in range(19)] for row in range(19)]
 for i in range(19):
-    location.append([])
+    userArray[i] =list(map(int,input().split()))
 
-    for j in range(19):
-        location[i].append(0)
-    
-for i in range(19):
-    location[i] = list(map(int, input().split()))
+result = int(input())
 
-n = int(input())
 
-for i in range(n):
-    x,y = map(int, input().split())
-
-    for j in range(19):
-        if location[x-1][j] == 0:
-            location[x-1][j] = 1
+for i in range(result):
+    x,y = map(int,input().split())
+    for k in range(19):
+        # x축 뒤집기
+        # -1 한거는 x,y 가 19크기 이니까 배열은 0부터 시작하니까~
+        # 배열은 0부터 시작
+        if (userArray[x-1][k] == 0):
+            userArray[x-1][k] = 1
         else:
-            location[x-1][j] = 0
-        if location[j][y-1] == 0:
-            location[j][y-1] = 1
+            userArray[x-1][k] = 0
+        
+        # y축 뒤집기
+        if (userArray[k][y-1] == 0):
+            userArray[k][y-1] = 1
         else:
-            location[j][y-1] = 0
+            userArray[k][y-1] = 0
+        # 어차피 x축 y축 총 2번 뒤집으면 가운데는 다시 돌아옴
 
-for i in range(19):
-    for j in range(19):
-        print(location[i][j], end=' ')
+
+for i in userArray:
+    for temp in i:
+        print(temp, end=' ')
     print()
+# userInput = int(input())
+
