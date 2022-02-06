@@ -1,5 +1,3 @@
-
-
 from itertools import combinations_with_replacement
 
 def solution(n, info):
@@ -30,3 +28,4 @@ def solution(n, info):
     if not win:
         return [-1]
     return answer
+print(solution(9, [0, 0, 1, 2, 0, 1, 1, 1, 1, 1, 1]))
