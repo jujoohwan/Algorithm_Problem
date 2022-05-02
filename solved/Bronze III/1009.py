@@ -1,6 +1,6 @@
-# 나는 머리가 나쁘다... 10/100점
 t = int(input())
 for i in range(t):
+    # 나는 머리가 나쁘다... 10/100점
     a, b = map(int, input().split(' '))
     temp = a % 10
 
