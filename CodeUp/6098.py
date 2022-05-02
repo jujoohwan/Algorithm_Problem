@@ -9,14 +9,12 @@
 
 # 성실한 개미가 이동한 경로를 9로 표시!!!!
 
-# 새벽이라 머리가 안돌아간다.... 멍하다...
 result = [[0 for col in range(10)] for row in range(10)]
 x, y = 1, 1  # 배열은 0부터 시작 사실상 2,2임
 
 for i in range(10):
     result[i] = list(map(int, input().split()))
 
-# (result[y][x+1] == 1 and result[y+1][x] == 0)
 while True:
     if(result[x][y] == 2):
         result[x][y] = 9
@@ -32,7 +30,6 @@ while True:
             result[x][y] = 9
             break
 
-print()
 for dataArray in result:
     for temp in dataArray:
         print(temp, end=' ')
