@@ -51,6 +51,73 @@ struct org_tree{
         cout << manager << " 아래에 " << subordinate << "을 추가 했습니다." << endl;
         return true;
     }
+    
+    // 재귀O
+    // 전위 순회 현재 노드 방문 -> 현재 노드의 왼쪽하위노드 방문 
+    // -> 현재 노드의 오른쪽 노드를 재귀적 방문
+    // CEO, 부사장, IT부장, 보안팀장, 앱개발팀장, 마케팅팀장, 물류팀장, 홍보팀장
+    static void preOrder(node* start) {
+        if (!start) 
+            return;
+        cout << start->position << ", ";
+        preOrder(start->first);
+        preOrder(start->second);
+    }
+    
+    // 재귀O
+    // 중위 순회: 왼쪽 노드 먼저 방문 -> 현재 노드 -> 오른쪽 노드 방문
+    // 보안팀장, IT부장, 앱개발팀장, 부사장, 물류팀장, 마케팀팀장, 홍보팀장, CEO
+    static void inOrder(node* start) {
+        if (!start)
+            return;
+        inOrder(start->first);
+        cout << start->position << ", ";
+        inOrder(start->second);
+    }
+    
+    // 재귀O    
+    //후위 순회: 두 자식 노드를 먼저 방문 후, 현재 노드를 방문
+    // 보안팀장, 앱개발팀장, IT부장, 물류팀장, 홍보팀장, 마케팅부장, 부사장, CEO
+    static void postOrder(node* start) {
+        if (!start) 
+            return;
+        postOrder(start->first);
+        postOrder(start->second);
+        cout << start->position << ", ";
+    }
+    
+    // 재귀O
+    static void lastOrder(node* start) {
+        if(!start) 
+            return;
+            
+        lastOrder(start->second);
+        lastOrder(start->first);
+        cout << start->position << ", ";
+    }
+    
+    // 재귀X
+    static void levelOrder(node* start) {
+        if (!start) 
+            return;
+        queue<node*> q;
+        q.push(start);
+        
+        while(!q.empty()){
+            int size = q.size();
+            for (int i =0; i<size; i++ ) {
+                auto current = q.front();
+                q.pop();
+                
+                cout << current->position << ", ";
+                if(current->first)
+                    q.push(current->first);
+                if(current->second)
+                    q.push(current->second);
+            }
+            cout << endl;
+        }
+    }
 };
 
 int main() {
@@ -64,5 +131,14 @@ int main() {
     tree.addSubordinate("마케팅부장", "물류팀장");
     tree.addSubordinate("마케팅부장", "홍보팀장");
     tree.addSubordinate("부사장", "재무부장");
+    tree.preOrder(tree.root);
+    cout << endl;
+    tree.inOrder(tree.root);
+    cout << endl;
+    tree.postOrder(tree.root);
+    cout << endl;
+    tree.lastOrder(tree.root);
+    cout << endl;
+    tree.levelOrder(tree.root);
     return 0;
 }
