@@ -2,7 +2,7 @@
 #include <queue>
 
 using namespace std;
-// 이진 트리
+// 트리
 struct node {
     string position;
     node* first; // 각각의 노드는 다른 두 개의 노드(하위노드) 에 대한 링크를 가진다.
